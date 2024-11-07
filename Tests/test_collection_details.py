@@ -1,7 +1,7 @@
 import pytest
 from src.utilities.database_util import DatabaseUtility
 from src.utilities.request_utilities import RequestUtility
-from src.configs.hosts_config import API_BASE_URLS, API_KEY, DB_PATH
+from src.configs.hosts_config import API_KEY
 
 
 # Initialize utility classes

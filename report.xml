@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="9" time="45.444" timestamp="2024-11-07T12:06:56.862731+01:00" hostname="ALFEN-AP-HRQMBL"><testcase classname="Tests.test_collection_details" name="test_collection_details[SK-C-1367, SK-A-4050,  SK-A-4691]" time="0.007" /><testcase classname="Tests.test_collection_details" name="test_retrieve_collection" time="1.066" /><testcase classname="Tests.test_rijkmuseum_api" name="test_retrieve_collection" time="1.185" /><testcase classname="Tests.test_rijkmuseum_api" name="test_retrieve_object_details" time="1.398" /><testcase classname="Tests.test_rijkmuseum_api" name="test_invalid_object_id" time="1.301" /><testcase classname="Tests.test_rijkmuseum_api" name="test_invalid_parameters" time="1.223" /><testcase classname="Tests.test_rijkmuseum_api" name="test_incorrect_api_key" time="0.175" /><testcase classname="Tests.test_rijkmuseum_api" name="test_api_performance" time="1.214"><failure message="AssertionError: Response took too long: 1.212184190750122 sec.&#10;assert 1.212184190750122 &lt; 0.5">def test_api_performance():
+        # Response time validation
+        start_time = time.time()
+        response = requests.get(f"{API_BASE_URLS}", params= {"key": API_KEY, "format": "json"})
+        response_time = time.time() - start_time
+&gt;       assert response_time &lt; 0.5, f"Response took too long: {response_time} sec."
+E       AssertionError: Response took too long: 1.212184190750122 sec.
+E       assert 1.212184190750122 &lt; 0.5
+
+Tests\test_rijkmuseum_api.py:68: AssertionError</failure></testcase><testcase classname="Tests.test_rijkmuseum_api" name="test_high_volume_api" time="36.147" /></testsuite></testsuites>

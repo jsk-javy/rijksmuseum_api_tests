@@ -8,7 +8,6 @@ sys.path.append(str(Path(__file__).resolve().parents[2]))
 
 import sqlite3
 from src.configs.hosts_config import DB_PATH
-import requests
 
 class DatabaseUtility:
     def __init__(self, db_name=DB_PATH):
