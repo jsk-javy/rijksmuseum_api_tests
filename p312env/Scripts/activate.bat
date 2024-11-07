@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\JSK\rijksmuseum_api_tests\rijksmuseum_api_tests\p312env
+set VIRTUAL_ENV=C:\Users\javed.khan\OneDrive - Alfen bv\Documents\JSK\AH_Assignments\Repo\rijksmuseum_api_tests\p312env
 
 if not defined PROMPT set PROMPT=$P$G
 
