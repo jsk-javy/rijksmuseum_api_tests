@@ -28,10 +28,13 @@ This project is an automated testing framework designed for validating the Rijks
    'pytest Tests --junitxml=report.xml'
 
 # Individual Tests: Run a specific test file:
-'pytest -s Tests/test_collection_details.py::<Test Case Name>'
+  pytest -s Tests/test_collection_details.py::TestCaseName
 
 # Future Improvements
 Enhanced Logging: Implement comprehensive logging across all modules.
+
 Dynamic Object ID Retrieval: Automate the objectNumber update to handle API changes.
+
 Complete Jenkins Pipeline: Finalize Jenkins integration for CI/CD.
+
 Code Refactoring: Ensure modular code structure with further refactoring as needed.
