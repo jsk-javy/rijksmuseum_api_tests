@@ -6,13 +6,13 @@ This project is an automated testing framework designed for validating the Rijks
 ## Setup Instructions
 
 # Prerequisites
-Python: Make sure Python 3.x is installed.
+  Python: Make sure Python 3.x is installed.
 
 # Virtual Environment
   It’s recommended to create a virtual environment.
   python -m venv <Virtual environment name>
 
- **Install Dependencies**  
+# Install Dependencies
    Use `pip install -r requirements.txt` to install necessary libraries.
 
 ## Setting up the Database
@@ -23,17 +23,12 @@ Python: Make sure Python 3.x is installed.
    python src/db_setup/db_setup.py
    Verify Database Entries (optional): Check initial database entries by running:
 
-
 ## Running the Tests
-# Run All Tests: To execute all tests with reports, use the following command:
-
-'pytest Tests --junitxml=report.xml'
-
+   Run All Tests: To execute all tests with reports, use the following command:
+   'pytest Tests --junitxml=report.xml'
 
 # Individual Tests: Run a specific test file:
-
-pytest -s Tests/test_collection_details.py::<Test Case Name>
-
+'pytest -s Tests/test_collection_details.py::<Test Case Name>'
 
 # Future Improvements
 Enhanced Logging: Implement comprehensive logging across all modules.
