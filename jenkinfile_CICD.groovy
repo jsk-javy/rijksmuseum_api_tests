@@ -2,39 +2,59 @@ pipeline {
     agent any
 
     environment {
-        PYTHON_ENV = 'venv'
+        // Specify Python version or virtual environment
+        VENV_DIR = "p312env"
     }
 
     stages {
-        stage('Clone Repository') {
+        stage('Checkout') {
             steps {
-                git branch: 'master', url: '<repository-url>'
+                // Checkout the code from the repository
+                checkout scm
             }
         }
 
-        stage('Set Up Python Environment') {
+        stage('Setup Python Environment') {
             steps {
-                sh 'python -m venv ${PYTHON_ENV}'
-                sh '. ${PYTHON_ENV}/bin/activate && pip install -r requirement.txt'
+                // Install dependencies if needed
+                script {
+                    if (!fileExists("${VENV_DIR}/bin/activate")) {
+                        sh "python3 -m venv ${VENV_DIR}"
+                    }
+                    sh """
+                    . ${VENV_DIR}/bin/activate
+                    pip install -r requirements.txt || echo "requirements.txt not found, skipping..."
+                    """
+                }
             }
         }
 
         stage('Run Tests') {
             steps {
-                sh '. ${PYTHON_ENV}/bin/activate && pytest Tests/'
+                // Run pytest and output results in JUnit XML format
+                script {
+                    sh """
+                    . ${VENV_DIR}/bin/activate
+                    pytest --junitxml=report.xml
+                    """
+                }
+            }
+        }
+
+        stage('Publish Test Report') {
+            steps {
+                // Publish the JUnit test report
+                junit 'report.xml'
             }
         }
     }
 
     post {
         always {
-            archiveArtifacts artifacts: '**/test-reports/*.xml', allowEmptyArchive: true
+            archiveArtifacts artifacts: '**/report.xml', allowEmptyArchive: true
         }
-        success {
-            echo 'Pipeline completed successfully.'
-        }
-        failure {
-            echo 'Pipeline failed.'
+        cleanup {
+            cleanWs()
         }
     }
 }
