@@ -10,7 +10,7 @@ This project is an automated testing framework designed for validating the Rijks
 
 # Virtual Environment
   It’s recommended to create a virtual environment.
-  python -m venv <Virtual environment name>
+  python -m venv Virtual environment name
 
 # Install Dependencies
    Use `pip install -r requirements.txt` to install necessary libraries.
@@ -20,7 +20,9 @@ This project is an automated testing framework designed for validating the Rijks
 
  # Run the Database Setup:
    Before executing the test case run Database setup file
-   python src/db_setup/db_setup.py
+   
+   'python src/db_setup/db_setup.py'
+   
    Verify Database Entries (optional): Check initial database entries by running:
 
 ## Running the Tests
