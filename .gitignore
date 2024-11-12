@@ -1,4 +1,7 @@
+# Ignore Python virtual environment
 p312env/
 p3env/
-venv/
-.env/
+
+# Ignore Python cache files
+__pycache__/
+*.pyc
