@@ -1,10 +1,20 @@
-<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="1" skipped="0" tests="9" time="45.444" timestamp="2024-11-07T12:06:56.862731+01:00" hostname="ALFEN-AP-HRQMBL"><testcase classname="Tests.test_collection_details" name="test_collection_details[SK-C-1367, SK-A-4050,  SK-A-4691]" time="0.007" /><testcase classname="Tests.test_collection_details" name="test_retrieve_collection" time="1.066" /><testcase classname="Tests.test_rijkmuseum_api" name="test_retrieve_collection" time="1.185" /><testcase classname="Tests.test_rijkmuseum_api" name="test_retrieve_object_details" time="1.398" /><testcase classname="Tests.test_rijkmuseum_api" name="test_invalid_object_id" time="1.301" /><testcase classname="Tests.test_rijkmuseum_api" name="test_invalid_parameters" time="1.223" /><testcase classname="Tests.test_rijkmuseum_api" name="test_incorrect_api_key" time="0.175" /><testcase classname="Tests.test_rijkmuseum_api" name="test_api_performance" time="1.214"><failure message="AssertionError: Response took too long: 1.212184190750122 sec.&#10;assert 1.212184190750122 &lt; 0.5">def test_api_performance():
+<?xml version="1.0" encoding="utf-8"?><testsuites><testsuite name="pytest" errors="0" failures="2" skipped="0" tests="10" time="16.424" timestamp="2024-11-19T22:05:19.505526+01:00" hostname="ALFEN-AP-HRQMBL"><testcase classname="Tests.test_collection_details" name="test_collection_details[SK-C-1368]" time="0.465" /><testcase classname="Tests.test_collection_details" name="test_collection_details[SK-A-4050]" time="0.590" /><testcase classname="Tests.test_collection_details" name="test_collection_details[SK-C-5]" time="0.721" /><testcase classname="Tests.test_collection_details" name="test_retrieve_collection" time="1.226" /><testcase classname="Tests.test_rijkmuseum_api" name="test_retrieve_object_details" time="1.534" /><testcase classname="Tests.test_rijkmuseum_api" name="test_invalid_object_id" time="1.230" /><testcase classname="Tests.test_rijkmuseum_api" name="test_invalid_parameters" time="1.248"><failure message="AssertionError: Expected non 200 status code for invalid params&#10;assert 200 != 200&#10; +  where 200 = &lt;Response [200]&gt;.status_code">def test_invalid_parameters():
+        response = requests.get(f"{API_BASE_URLS}", params ={"key": API_KEY, "format": "json", "test": 2})
+        print(response.status_code)
+        data = response.json()
+        print(json.dumps(data, indent=0))
+&gt;       assert response.status_code != 200, "Expected non 200 status code for invalid params"
+E       AssertionError: Expected non 200 status code for invalid params
+E       assert 200 != 200
+E        +  where 200 = &lt;Response [200]&gt;.status_code
+
+Tests\test_rijkmuseum_api.py:45: AssertionError</failure></testcase><testcase classname="Tests.test_rijkmuseum_api" name="test_incorrect_api_key" time="0.135" /><testcase classname="Tests.test_rijkmuseum_api" name="test_api_performance" time="1.167"><failure message="AssertionError: Response took too long: 1.1686701774597168 sec.&#10;assert 1.1686701774597168 &lt; 1.0">def test_api_performance():
         # Response time validation
         start_time = time.time()
         response = requests.get(f"{API_BASE_URLS}", params= {"key": API_KEY, "format": "json"})
         response_time = time.time() - start_time
-&gt;       assert response_time &lt; 0.5, f"Response took too long: {response_time} sec."
-E       AssertionError: Response took too long: 1.212184190750122 sec.
-E       assert 1.212184190750122 &lt; 0.5
+&gt;       assert response_time &lt; 1.0, f"Response took too long: {response_time} sec."
+E       AssertionError: Response took too long: 1.1686701774597168 sec.
+E       assert 1.1686701774597168 &lt; 1.0
 
-Tests\test_rijkmuseum_api.py:68: AssertionError</failure></testcase><testcase classname="Tests.test_rijkmuseum_api" name="test_high_volume_api" time="36.147" /></testsuite></testsuites>
+Tests\test_rijkmuseum_api.py:61: AssertionError</failure></testcase><testcase classname="Tests.test_rijkmuseum_api" name="test_high_volume_api" time="6.141" /></testsuite></testsuites>

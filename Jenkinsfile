@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         // Specify Python version or virtual environment
-        VENV_DIR = "p312env"
+        VENV_DIR = "p3env"
     }
 
     stages {
@@ -16,30 +16,32 @@ pipeline {
 
         stage('Setup Python Environment') {
             steps {
-                // Install dependencies if needed
-                script {
-                    if (!fileExists("${VENV_DIR}/bin/activate")) {
-                        sh "python3 -m venv ${VENV_DIR}"
-                    }
-                    sh """
-                    . ${VENV_DIR}/bin/activate
-                    pip install -r requirements.txt || echo "requirements.txt not found, skipping..."
-                    """
+            // Install dependencies if needed
+            script {
+                if (!fileExists("${VENV_DIR}/Scripts/activate")) {
+                    bat "python -m venv ${VENV_DIR}"
+                }
+                bat """
+                call ${VENV_DIR}/Scripts/activate
+                pip install -r requirements.txt || echo "requirements.txt not found, skipping..."
+                """
                 }
             }
+
         }
 
         stage('Run Tests') {
             steps {
                 // Run pytest and output results in JUnit XML format
                 script {
-                    sh """
-                    . ${VENV_DIR}/bin/activate
+                    bat """
+                    call ${VENV_DIR}\\Scripts\\activate
                     pytest --junitxml=report.xml
                     """
                 }
             }
         }
+
 
         stage('Publish Test Report') {
             steps {

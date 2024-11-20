@@ -33,9 +33,9 @@ def setup_database():
 
     # Dummy data to insert
     data_entries = [
-        ('nl-SK-C-5', 'SK-A-447', 'De Nachtwacht', 'Rembrandt van Rijn', True, True),
-        ('nl-SK-A-5', 'SK-A-1718', 'Het Melkmeisje', 'Johannes Vermeer', True, True),
-        ('nl-SK-D-2', 'SK-A-3584', 'Zelfportret', 'Vincent van Gogh', True, True)
+        ('nl-SK-A-4050', 'SK-A-4050', 'De Nachtwacht', 'Rembrandt van Rijn', True, True),
+        ('nl-SK-C-1368', 'SK-C-1368', 'Het Melkmeisje', 'Johannes Vermeer', True, True),
+        ('nl-SK-C-5', 'SK-C-5', 'Zelfportret', 'Vincent van Gogh', True, True)
     ]
 
     db_util.cursor.executemany("""
